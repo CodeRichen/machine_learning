@@ -1,0 +1,2 @@
+threads=8
+time=60

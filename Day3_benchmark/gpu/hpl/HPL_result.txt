@@ -1,0 +1,267 @@
+
+================================================================================
+HPL-NVIDIA 1.0.0  -- NVIDIA accelerated HPL benchmark -- NVIDIA
+================================================================================
+HPLinpack 2.1  --  High-Performance Linpack benchmark  --   October 26, 2012
+Written by A. Petitet and R. Clint Whaley,  Innovative Computing Laboratory, UTK
+Modified by Piotr Luszczek, Innovative Computing Laboratory, UTK
+Modified by Julien Langou, University of Colorado Denver
+================================================================================
+
+An explanation of the input/output parameters follows:
+T/V    : Wall time / encoded variant.
+N      : The order of the coefficient matrix A.
+NB     : The partitioning blocking factor.
+P      : The number of process rows.
+Q      : The number of process columns.
+Time   : Time in seconds to solve the linear system.
+Gflops : Rate of execution for solving the linear system.
+
+The following parameter values will be used:
+
+N      :    2000 
+NB     :     256 
+PMAP   : Row-major process mapping
+P      :       1 
+Q      :       2 
+PFACT  :   Right 
+NBMIN  :       2 
+NDIV   :       2 
+RFACT  :   Crout 
+BCAST  :  1ringM 
+DEPTH  :       1 
+SWAP   : Mix (threshold = 64)
+L1     : no-transposed form
+U      : transposed form
+EQUIL  : yes
+ALIGN  : 8 double precision words
+
+--------------------------------------------------------------------------------
+
+- The matrix A is randomly generated for each test.
+- The following scaled residual check will be computed:
+      ||Ax-b||_oo / ( eps * ( || x ||_oo * || A ||_oo + || b ||_oo ) * N )
+- The relative machine precision (eps) is taken to be               1.110223e-16
+- Computational tests pass if scaled residuals are less than                16.0
+
+
+	******** TESTING SYSTEM PARAMETERS ********
+	PARAM 	[UNITS] 	MIN 	MAX 	AVG 
+	----- 	------- 	--- 	--- 	--- 
+CPU : 
+	CPU_BW	[GB/s ] 	10.2 	13.1 	11.7 
+	CPU_FP	[GFLPS] 
+	     	NB =   32 	  23 	  27 	  25 
+	     	NB =   64 	  27 	  33 	  30 
+	     	NB =  128 	  47 	  59 	  53 
+	     	NB =  256 	  54 	  68 	  61 
+	     	NB =  512 	  53 	  71 	  62 
+PCIE (NVLINK on IBM) : 
+	H2D_BW	[GB/s ] 	4.8 	4.8 	4.8 
+	D2H_BW	[GB/s ] 	5.5 	5.5 	5.5 
+	BID_BW	[GB/s ] 	7.8 	7.8 	7.8 
+CPU_BW concurrent with BID_BW : 
+	CPU_BW	[GB/s ] 	10.0 	12.6 	11.3 
+	BID_BW	[GB/s ] 	9.7 	9.7 	9.7 
+GPU : 
+	GPU_BW	[GB/s ] 	356 	425 	390 
+	GPU_FP	[GFLPS] 
+	     	NB =  128 	2868 	2929 	2898 
+	     	NB =  256 	3320 	3355 	3337 
+	     	NB =  384 	3297 	3399 	3348 
+	     	NB =  512 	3234 	3299 	3267 
+	     	NB =  640 	3347 	3370 	3358 
+	     	NB =  768 	3299 	3317 	3308 
+	     	NB =  896 	3290 	3333 	3311 
+	     	NB = 1024 	3252 	3280 	3266 
+NET : 
+	PROC COL NET_BW	[MB/s ] 
+		     8 B  	 118 	 148 	 133 
+		    64 B  	 992 	1145 	1068 
+		   512 B  	6888 	7278 	7083 
+		     4 KB 	21033 	25271 	23152 
+		    32 KB 	26465 	29495 	27980 
+		   256 KB 	21569 	22625 	22097 
+		  2048 KB 	9305 	10801 	10053 
+		 16384 KB 	9109 	10499 	9804 
+	NET_LAT	[ us  ] 	0.0 	0.0 	0.0 
+
+	PROC ROW NET_BW	[MB/s ] 
+		     8 B  	  46 	  46 	  46 
+		    64 B  	 314 	 314 	 314 
+		   512 B  	1178 	1178 	1178 
+		     4 KB 	3454 	3455 	3454 
+		    32 KB 	8263 	8266 	8265 
+		   256 KB 	15317 	15318 	15318 
+		  2048 KB 	7284 	7285 	7284 
+		 16384 KB 	7761 	7761 	7761 
+	NET_LAT	[ us  ] 	0.4 	0.4 	0.4 
+
+displaying Prog:%complete, N:columns, Time:seconds
+iGF:instantaneous GF, GF:avg GF, GF_per: process GF
+
+
+Per-Process Host Memory Estimate: 0.02 GB (MAX) 0.02 GB (MIN)
+
+PCOL: 1 GPU_COLS: 977 CPU_COLS: 0 
+PCOL: 0 GPU_COLS: 1025 CPU_COLS: 0 
+[0;31m Prog= 33.69%	N_left= 1744	Time= 0.16	Time_left= 0.32	iGF=    11.09	GF=    11.09	iGF_per= 5.54 	GF_per= 5.54 [0m
+[0;31m Prog= 58.82%	N_left= 1488	Time= 0.19	Time_left= 0.13	iGF=    56.20	GF=    16.88	iGF_per= 28.10 	GF_per= 8.44 [0m
+[0;31m Prog= 76.63%	N_left= 1232	Time= 0.19	Time_left= 0.06	iGF=   146.40	GF=    21.24	iGF_per= 73.20 	GF_per= 10.62 [0m
+[0;31m Prog= 88.38%	N_left= 976	Time= 0.22	Time_left= 0.03	iGF=    24.10	GF=    21.58	iGF_per= 12.05 	GF_per= 10.79 [0m
+[0;31m Prog= 95.33%	N_left= 720	Time= 0.23	Time_left= 0.01	iGF=    44.60	GF=    22.43	iGF_per= 22.30 	GF_per= 11.21 [0m
+[0;31m Prog= 98.75%	N_left= 464	Time= 0.25	Time_left= 0.00	iGF=     9.03	GF=    21.33	iGF_per= 4.52 	GF_per= 10.67 [0m
+[0;31m Prog= 99.89%	N_left= 208	Time= 0.25	Time_left= 0.00	iGF=    17.87	GF=    21.29	iGF_per= 8.93 	GF_per= 10.64 [0m
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WR01C2R2        2000   256     1     2               0.25              2.110e+01 
+--------------------------------------------------------------------------------
+||Ax-b||_oo/(eps*(||A||_oo*||x||_oo+||b||_oo)*N)= 84745888804.3939514 ...... FAILED
+||Ax-b||_oo  . . . . . . . . . . . . . . . . . =          65.933154
+||A||_oo . . . . . . . . . . . . . . . . . . . =         521.239364
+||A||_1  . . . . . . . . . . . . . . . . . . . =         519.870569
+||x||_oo . . . . . . . . . . . . . . . . . . . =           6.721185
+||x||_1  . . . . . . . . . . . . . . . . . . . =        3028.772212
+||b||_oo . . . . . . . . . . . . . . . . . . . =           0.499761
+================================================================================
+
+Finished      1 tests with the following results:
+              0 tests completed and passed residual checks,
+              1 tests completed and failed residual checks,
+              0 tests skipped because of illegal input values.
+--------------------------------------------------------------------------------
+
+End of Tests.
+================================================================================
+
+================================================================================
+HPL-NVIDIA 1.0.0  -- NVIDIA accelerated HPL benchmark -- NVIDIA
+================================================================================
+HPLinpack 2.1  --  High-Performance Linpack benchmark  --   October 26, 2012
+Written by A. Petitet and R. Clint Whaley,  Innovative Computing Laboratory, UTK
+Modified by Piotr Luszczek, Innovative Computing Laboratory, UTK
+Modified by Julien Langou, University of Colorado Denver
+================================================================================
+
+An explanation of the input/output parameters follows:
+T/V    : Wall time / encoded variant.
+N      : The order of the coefficient matrix A.
+NB     : The partitioning blocking factor.
+P      : The number of process rows.
+Q      : The number of process columns.
+Time   : Time in seconds to solve the linear system.
+Gflops : Rate of execution for solving the linear system.
+
+The following parameter values will be used:
+
+N      :    2000 
+NB     :     256 
+PMAP   : Row-major process mapping
+P      :       1 
+Q      :       2 
+PFACT  :   Right 
+NBMIN  :       2 
+NDIV   :       2 
+RFACT  :   Crout 
+BCAST  :  1ringM 
+DEPTH  :       1 
+SWAP   : Mix (threshold = 64)
+L1     : no-transposed form
+U      : transposed form
+EQUIL  : yes
+ALIGN  : 8 double precision words
+
+--------------------------------------------------------------------------------
+
+- The matrix A is randomly generated for each test.
+- The following scaled residual check will be computed:
+      ||Ax-b||_oo / ( eps * ( || x ||_oo * || A ||_oo + || b ||_oo ) * N )
+- The relative machine precision (eps) is taken to be               1.110223e-16
+- Computational tests pass if scaled residuals are less than                16.0
+
+
+	******** TESTING SYSTEM PARAMETERS ********
+	PARAM 	[UNITS] 	MIN 	MAX 	AVG 
+	----- 	------- 	--- 	--- 	--- 
+CPU : 
+	CPU_BW	[GB/s ] 	12.3 	13.2 	12.7 
+	CPU_FP	[GFLPS] 
+	     	NB =   32 	  26 	  28 	  27 
+	     	NB =   64 	  30 	  33 	  32 
+	     	NB =  128 	  52 	  54 	  53 
+	     	NB =  256 	  44 	  45 	  45 
+	     	NB =  512 	  47 	  48 	  48 
+PCIE (NVLINK on IBM) : 
+	H2D_BW	[GB/s ] 	4.8 	4.8 	4.8 
+	D2H_BW	[GB/s ] 	5.5 	5.5 	5.5 
+	BID_BW	[GB/s ] 	7.8 	7.8 	7.8 
+CPU_BW concurrent with BID_BW : 
+	CPU_BW	[GB/s ] 	10.0 	10.1 	10.0 
+	BID_BW	[GB/s ] 	9.8 	9.8 	9.8 
+GPU : 
+	GPU_BW	[GB/s ] 	240 !!!! WARNING: RANK: 1 HOST: ln01-twnia2.twcc.ai GPU: 0000:1b:00.0 	751 	496 
+	GPU_BW	[GB/s ] 	240 
+	GPU_FP	[GFLPS] 
+	     	NB =  128 	6505 	6602 	6553 
+	     	NB =  256 	3321 	3358 	3340 
+	     	NB =  384 	3320 	3433 	3376 
+	     	NB =  512 	3193 	3238 	3216 
+	     	NB =  640 	3276 	3337 	3307 
+	     	NB =  768 	3200 	3207 	3203 
+	     	NB =  896 	3258 	3285 	3271 
+	     	NB = 1024 	3224 	3245 	3235 
+NET : 
+	PROC COL NET_BW	[MB/s ] 
+		     8 B  	  65 	  66 	  66 
+		    64 B  	 573 	 576 	 574 
+		   512 B  	3849 	3854 	3852 
+		     4 KB 	17026 	17458 	17242 
+		    32 KB 	25862 	26086 	25974 
+		   256 KB 	21610 	21707 	21659 
+		  2048 KB 	10430 	10570 	10500 
+		 16384 KB 	10214 	10366 	10290 
+	NET_LAT	[ us  ] 	0.0 	0.0 	0.0 
+
+	PROC ROW NET_BW	[MB/s ] 
+		     8 B  	  42 	  42 	  42 
+		    64 B  	 284 	 284 	 284 
+		   512 B  	1213 	1213 	1213 
+		     4 KB 	3725 	3725 	3725 
+		    32 KB 	10131 	10134 	10133 
+		   256 KB 	18610 	18611 	18610 
+		  2048 KB 	8947 	8947 	8947 
+		 16384 KB 	9030 	9030 	9030 
+	NET_LAT	[ us  ] 	0.5 	0.5 	0.5 
+
+displaying Prog:%complete, N:columns, Time:seconds
+iGF:instantaneous GF, GF:avg GF, GF_per: process GF
+
+
+Per-Process Host Memory Estimate: 0.02 GB (MAX) 0.02 GB (MIN)
+
+PCOL: 1 GPU_COLS: 977 CPU_COLS: 0 
+PCOL: 0 GPU_COLS: 1025 CPU_COLS: 0 
+[0;31m Prog= 33.69%	N_left= 1744	Time= 0.16	Time_left= 0.31	iGF=    11.41	GF=    11.41	iGF_per= 5.71 	GF_per= 5.71 [0m
+[0;31m Prog= 58.82%	N_left= 1488	Time= 0.18	Time_left= 0.12	iGF=    75.38	GF=    17.90	iGF_per= 37.69 	GF_per= 8.95 [0m
+[0;31m Prog= 76.63%	N_left= 1232	Time= 0.19	Time_left= 0.06	iGF=    94.58	GF=    22.06	iGF_per= 47.29 	GF_per= 11.03 [0m
+[0;31m Prog= 88.38%	N_left= 976	Time= 0.21	Time_left= 0.03	iGF=    21.98	GF=    22.05	iGF_per= 10.99 	GF_per= 11.02 [0m
+[0;31m Prog= 95.33%	N_left= 720	Time= 0.25	Time_left= 0.01	iGF=    11.64	GF=    20.70	iGF_per= 5.82 	GF_per= 10.35 [0m
+[0;31m Prog= 98.75%	N_left= 464	Time= 0.28	Time_left= 0.00	iGF=     4.94	GF=    18.64	iGF_per= 2.47 	GF_per= 9.32 [0m
+[0;31m Prog= 99.89%	N_left= 208	Time= 0.31	Time_left= 0.00	iGF=     1.97	GF=    17.00	iGF_per= 0.99 	GF_per= 8.50 [0m
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WR01C2R2        2000   256     1     2               0.32              1.668e+01 
+--------------------------------------------------------------------------------
+||Ax-b||_oo/(eps*(||A||_oo*||x||_oo+||b||_oo)*N)=        0.0054482 ...... PASSED
+================================================================================
+
+Finished      1 tests with the following results:
+              1 tests completed and passed residual checks,
+              0 tests completed and failed residual checks,
+              0 tests skipped because of illegal input values.
+--------------------------------------------------------------------------------
+
+End of Tests.
+================================================================================

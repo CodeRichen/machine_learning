@@ -1,0 +1,2 @@
+threads=14
+timelimit=81

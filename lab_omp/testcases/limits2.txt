@@ -1,0 +1,2 @@
+threads=6
+time=30
